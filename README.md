@@ -174,7 +174,7 @@ FROM Participant p;
 - This query retrieves the total number of unique participants in all tournaments. It counts the distinct participationID from the Participant table, ensuring that each participant is counted only once, even if they participated in multiple tournaments.
 - Knowing the total number of participants helps in understanding the popularity and engagement in tournaments. This information is essential for event planning, resource allocation, and potentially adjusting marketing strategies to encourage more participation.
 
->Find the length of members' memberships. (Q4)
+>Find the length of platinumn members' memberships. (Q4)
 ```sql
 SELECT membershipID, membershipDuration
 FROM Membership
@@ -188,7 +188,7 @@ WHERE membershipName = 'Platinum';
 | 22           | 9 months           |
 | 23           | 12 months          |
 
-- Add plain english
+- Selects membershipID and membershipDuration to display the membershipID of Platinum members, as well as the duration of their membership. 
 - This query allows the club to recognize how long members have had the platinum membership. They might want to offer more benefits along with the higher monthly cost of this membership compared to others. After a certain number of months, they can offer discounts, free add-ons, etc. This will encourage members to upgrade to platinum, bringing in more revenue for the club.
 
 
@@ -281,7 +281,7 @@ WHERE courtStatus = 'Available' AND courtLocation = 'East';
 | 57      | 4           |
 
 
-- plain english
+- This query selects the courtID and courtNumber, using WHERE to specify the courtStatus as ‘Available’ AND courtLocation as ‘East’. 
 - Helps the pickleball club quickly find which courts in the East location are available for use. Knowing the available courts in a certain location allows the owners and staff to easily track courts and assign courts to members who prefer playing in that specific area. It also helps with scheduling and managing maintenance for available courts.
 
 
@@ -301,7 +301,7 @@ GROUP BY C.courtID, C.courtNumber;
 | 12      | 7           | 1                 |
 
 
-- plain english
+- This query finds the number of reservations per court. It joins the Court and Reservation tables using courtID to connect each reservation to the correct court. The COUNT function totals the total number of reservations per court, and the GROUP BY groups the data by each court’s ID and number so that the reservation count is calculated for each individual court.
 - Helps the pickleball club see how often each court is being used. Tracking the number of reservations for each court allows management to understand which courts are the most popular and which ones might not be used as much. This information is useful for scheduling maintenance, making improvements, or possibly deciding if new courts need to be added.
 
 
