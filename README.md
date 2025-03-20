@@ -27,20 +27,20 @@
 | Column Name      | Description                                                   | Data Type | Size | Format | Key? |
 |------------------|---------------------------------------------------------------|-----------|------|--------|------|
 | coachID          | Unique sequential number indicating the identification of the coach | Int       | 2    |        | PK   |
-| coachFirstName   | Coach’s first name                                            | Text      | 10   |        |      |
-| coachLastName    | Coach’s last name                                             | Text      | 14   |        |      |
-| coachLevel       | Coach’s personal skill level                                  | Text      | 10   |        |      |
-| coachAvailability| Coach’s availability                                          | Text      | 20   |        |      |
+| coachFirstName   | Coach’s first name                                            | Text      | 45  |        |      |
+| coachLastName    | Coach’s last name                                             | Text      | 45   |        |      |
+| coachLevel       | Coach’s personal skill level                                  | Text      | 45   |        |      |
+| coachAvailability| Coach’s availability                                          | Text      | 45   |        |      |
 
 >Table: Court
 
 | Column Name    | Description                                           | Data Type | Size | Format | Key? |
 |----------------|-------------------------------------------------------|-----------|------|--------|------|
 | courtID        | Unique sequential number indicating the identification of the court | Int       | 3    |        | PK   |
-| courtNumber    | Court’s physical sign number at location              | Text      | 2    |        |      |
-| courtSurface   | Material that the court is made of                    | Text      | 10   |        |      |
-| courtLocation  | Location of court at fields                           | Text      | 10   |        |      |
-| courtStatus    | Availability of court                                  | Text      | 14   |        |      |
+| courtNumber    | Court’s physical sign number at location              | Text      | 45    |        |      |
+| courtSurface   | Material that the court is made of                    | Text      | 45   |        |      |
+| courtLocation  | Location of court at fields                           | Text      | 45   |        |      |
+| courtStatus    | Availability of court                                  | Text      | 45   |        |      |
 
 >Table: Lesson
 
@@ -49,20 +49,20 @@
 | memberID       | Unique sequential number indicating the identification of the member | Int       | 3    |          | PK, FK (ref. Member) |
 | coachID        | Unique sequential number indicating the identification of the coach | Int       | 2    |          | PK, FK (ref. Coach)  |
 | lessonDateTime | Start date of the lesson                               | Date      | 14   | 9999-99-99 99:99:99 |      |
-| lessonDuration | Duration of the lesson                                 | Text      | 10   |        |      |
-| lessonFocus    | Main objective of lesson                               | Text      | 18   |        |      |
+| lessonDuration | Duration of the lesson                                 | Text      | 45   |        |      |
+| lessonFocus    | Main objective of lesson                               | Text      | 45  |        |      |
 
 >Table: Member
 
 | Column Name        | Description                                                       | Data Type | Size | Format         | Key? |
 |--------------------|-------------------------------------------------------------------|-----------|------|----------------|------|
 | memberID           | Unique sequential number indicating the identification of the member | Int       | 3    |                | PK   |
-| memberFirstName    | Member’s first name                                               | Text      | 15   |                |      |
-| memberLastName     | Member’s last name                                                | Text      | 15   |                |      |
-| memberEmail        | Member’s email address                                            | Text      | 30   |                |      |
-| memberPhoneNumber  | Member’s phone number                                             | Text      | 10   | 999-999-9999    |      |
+| memberFirstName    | Member’s first name                                               | Text      | 45   |                |      |
+| memberLastName     | Member’s last name                                                | Text      | 45   |                |      |
+| memberEmail        | Member’s email address                                            | Text      | 45   |                |      |
+| memberPhoneNumber  | Member’s phone number                                             | Text      | 45   | 999-999-9999    |      |
 | memberType         | Member’s category depending on if they are a new member or a senior member | Text      | 15   |                |      |
-| memberSkill        | Skill level of member                                            | Text      | 10   |                |      |
+| memberSkill        | Skill level of member                                            | Text      | 45   |                |      |
 | memberJoinDate     | Date that member joined the club                                 | Date      | 8    | 9999-99-99     |      |
 | membershipID       | Unique sequential number indicating the identification of the membership | Int       | 3    |                | FK (ref. Membership) |
 
@@ -71,10 +71,10 @@
 | Column Name        | Description                                                       | Data Type | Size | Format   | Key? |
 |--------------------|-------------------------------------------------------------------|-----------|------|----------|------|
 | membershipID       | Unique sequential number indicating the identification of the membership | Int       | 3    |          | PK   |
-| membershipName     | Name of the membership that pertains to the member                | Text      | 10   |          |      |
-| membershipPrice    | Price of the membership                                           | Text      | 3    |          |      |
-| membershipDuration | Length of the membership                                          | Text      | 10   |          |      |
-| membershipBenefits | Perks/benefits of having the membership                           | Text      | 25   |          |      |
+| membershipName     | Name of the membership that pertains to the member                | Text      | 45   |          |      |
+| membershipPrice    | Price of the membership                                           | Text      | 45    |          |      |
+| membershipDuration | Length of the membership                                          | Text      | 45   |          |      |
+| membershipBenefits | Perks/benefits of having the membership                           | Text      | 45   |          |      |
 | paymentID          | Unique sequential number indicating the identification of the payment of the membership | Int       | 3    |          | FK (ref. Payment) |
 
 
@@ -83,8 +83,8 @@
 | Column Name            | Description                                                    | Data Type | Size | Format | Key? |
 |------------------------|----------------------------------------------------------------|-----------|------|--------|------|
 | participationID         | Unique sequential number indicating the identification of the participant | Int       | 3    |        | PK   |
-| participationDivision   | Division of tournament that participant participated in       | Text      | 20   |        |      |
-| participationPlacement  | Placement of participant in the tournament                    | Text      | 15   |        |      |
+| participationDivision   | Division of tournament that participant participated in       | Text      | 45   |        |      |
+| participationPlacement  | Placement of participant in the tournament                    | Text      | 45   |        |      |
 | memberID               | Unique sequential number indicating the identification of the member | Int       | 3    |        | FK (ref. Member) |
 
 >Table: Payment
@@ -94,7 +94,7 @@
 | paymentID      | Unique sequential number indicating the identification of the payment of the membership | Int       | 3    |            | PK   |
 | paymentAmount  | Payment amount made                                           | Int       | 3    |            |      |
 | paymentDate    | Date that payment was made                                    | Date      | 8    | 9999-99-99 |      |
-| paymentMethod  | Method in which payment was made                              | Text      | 15   |            |      |
+| paymentMethod  | Method in which payment was made                              | Text      | 45   |            |      |
 
 >Table: Reservation
 
@@ -102,8 +102,8 @@
 |---------------------|----------------------------------------------------------------|-----------|------|----------------|------|
 | memberID            | Unique sequential number indicating the identification of the member | Int       | 3    |                | PK, FK (ref. Member) |
 | courtID             | Unique sequential number indicating the identification of the court | Int       | 3    |                | PK, FK (ref. Court)  |
-| reservationDateTime | Exact date and time of reservation                            | Text      | 14   | 9999-99-99 99:99:99 |      |
-| reservationDuration | Duration of reservation                                        | Text      | 10   |                |      |
+| reservationDateTime | Exact date and time of reservation                            | Text      | 45   | 9999-99-99 99:99:99 |      |
+| reservationDuration | Duration of reservation                                        | Text      | 45   |                |      |
 
 >Table: Results
 
@@ -112,17 +112,17 @@
 | participant1ID      | Unique sequential number indicating the identification of the 1st participant in a game | Int       | 3    |        | PK, FK (ref. Participant) |
 | tournamentID        | Unique sequential number indicating the identification of the tournament | Int       | 3    |        | PK, FK (ref. Tournament)  |
 | participant2ID      | Unique sequential number indicating the identification of the 2nd participant in a game | Int       | 3    |        | PK, FK (ref. Participant) |
-| participant1Score   | 1st participant’s score                                       | Text      | 3    |        |      |
-| participant2Score   | 2nd participant’s score                                       | Text      | 3    |        |      |
-| winner              | Winner of the game                                            | Text      | 3    |        |      |
+| participant1Score   | 1st participant’s score                                       | Text      | 45    |        |      |
+| participant2Score   | 2nd participant’s score                                       | Text      | 45    |        |      |
+| winner              | Winner of the game                                            | Text      | 45    |        |      |
 
 >Table: Tournament
 
 | Column Name       | Description                                                   | Data Type | Size | Format   | Key? |
 |-------------------|---------------------------------------------------------------|-----------|------|----------|------|
 | tournamentID      | Unique sequential number indicating the identification of the tournament | Int       | 2    |          | PK   |
-| tournamentName    | Name of tournament                                            | Text      | 20   |          |      |
-| tournamentDate    | Season of tournament                                          | Text      | 10   |          |      |
+| tournamentName    | Name of tournament                                            | Text      | 45   |          |      |
+| tournamentDate    | Season of tournament                                          | Text      | 45   |          |      |
 | tournamentFee     | Cost to participate in tournament                             | Num       | 3    |          |      |
 | tournamentPrize   | Cash prize for winning tournament                             | Num       | 4    |          |      |
 
