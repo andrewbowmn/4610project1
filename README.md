@@ -1,4 +1,3 @@
-
 # 4610 Group 3: Pickle Ball Club
 
 - The task is to model and build a relational database for a pickleball club. This club offers lessons, has various levels of memberships, allows court reservations, and participates in tournaments. Our goal is to precisely model these relationships, create sample data, and populate the entities and their attributes accordingly. We aim to execute functional queries on this data to gain valuable business insights into the club and its activities. 
@@ -128,21 +127,69 @@ Table: Tournament
 
 
 ## Queries
-### Simple
+#### Simple
 1. Provide a list of all members who have taken lessons at the club.
 ```sql
 SELECT DISTINCT M.memberID, M.memberFirstName, M.memberLastName
 FROM Member M
 JOIN Lesson L ON M.memberID = L.memberID;
 ```
+| memberID | memberFirstName | memberLastName |
+|----------|-----------------|----------------|
+| 31       | Chloette        | Farries        |
+| 70       | Leonie          | Jobling        |
+| 115      | Marshal         | Tinto          |
+| 123      | Alejoa          | Lovegrove      |
+| 131      | Dix             | Sizeland       |
+
+- This query lists all unique members who have taken lessons at the club. It joins the Member and Lesson tables on the memberID field. The DISTINCT keyword ensures that each member appears only once, even if they’ve taken multiple lessons. The result includes the member's ID, first name, and last name.
+
+- This query helps managers identify members who are actively participating in lessons, which is key to understanding engagement. By knowing who is taking lessons, managers can offer targeted promotions to increase member retention. It also aids in operational planning by showing the demand for lessons, helping allocate resources like coaches and facilities. 
+
+2. Find the total amount of payments that have been made for memberships
+```sql
+SELECT SUM(p.paymentAmount) AS totalMembershipRevenue
+FROM Payment p
+JOIN Membership m ON p.paymentID = m.paymentID;
+```
+| totalMembershipRevenue |
+|------------------------|
+| 53423                  |
+
+- This query takes a sum of all the recorded payment amounts and joins the Payment and Member tables on the paymentID field to ensure payments are related to membership costs.
+
+- This query allows the pickleball club management to have an idea of their revenue. Gross revenue is important to keep track of when running a business because it allows the club to allocate funds properly to tournament entry fees, coach salaries, court maintenance, and see what is making the most money.
+- Note: Payments have minimum balance of 100, but partial payments are allowed. This query can help identify if the payments recieved do not meet the expected amount of income per membership plans.
+
+3. Display the distribution of membership tiers (and their respective prices) at the pickelball club.
+```sql
+SELECT m.membershipName, COUNT(*) AS membershipCount, m.membershipPrice
+FROM Membership m
+JOIN Member mem ON m.membershipID = mem.membershipID
+GROUP BY m.membershipName, m.membershipPrice;
+```
+| membershipName | membershipCount | membershipPrice |
+|----------------|-----------------|-----------------|
+| Silver         | 54              | 200             |
+| Bronze         | 53              | 100             |
+| Gold           | 47              | 300             |
+| Platinum       | 46              | 400             |
+
+- This query counts the number of members in each membership type and displays the membershipName, the total number of members in each type (membershipCount), and the price for each membership type (membershipPrice). It joins the Membership table with the Member table using the membershipID field to link each member to their membership type. The query groups the results by membershipName and membershipPrice to get the count of members for each specific membership type.
+- This query helps managers understand the distribution of members across different membership types and their associated prices. It provides insights into the popularity of each membership tier, allowing managers to adjust pricing, marketing, and resource allocation accordingly. Additionally, it helps forecast potential revenue from each membership category.
 
 
 
 
-### Complex
+
+#### Complex
 
 
 
+#### Notes & Assumptions
+- For clarity and conciseness, queries were ran and results displayed with `LIMIT 5;`
+- The pickle ball club is proud to be open 24/7 for its members
+- Tournaments occur once per season, for a total of 4 a year.
 ## Database Information
 Access our database! ``al_Group_47114_G3`` on terry codrus server.
 
