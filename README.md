@@ -229,7 +229,7 @@ WHERE R.memberID IS NULL;
 - Add plain english description
 - This query allows the pickleball club to see which members are not using the courts at all. It helps management figure out which members might be losing interest or are not taking advantage of their membership benefits. The club can use this information to reach out, re-engage these members, or offer incentives to get them back on the courts. Keeping members active is important for retention and making sure everyone gets value from their membership.
 
->Provide a list of members who have payed more than the average membership price. (Q7)
+>Provide a list of members who have paid more than the average membership price. (Q7)
 ```sql
 SELECT M.memberID, M.memberFirstName, M.memberLastName, MS.membershipPrice
 FROM Member M
