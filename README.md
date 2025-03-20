@@ -162,7 +162,7 @@ JOIN Membership m ON p.paymentID = m.paymentID;
 - This query allows the pickleball club management to have an idea of their revenue. Gross revenue is important to keep track of when running a business because it allows the club to allocate funds properly to tournament entry fees, coach salaries, court maintenance, and see what is making the most money.
 - Note: Payments have minimum balance of 100, but partial payments are allowed. This query can help identify if the payments recieved do not meet the expected amount of income per membership plans.
 
->Provide the count of total tournament participants. (Q4)
+>Provide the count of total tournament participants. (Q5)
 ```sql
 SELECT COUNT(DISTINCT p.participationID) AS totalParticipants
 FROM Participant p;
@@ -174,7 +174,7 @@ FROM Participant p;
 - This query retrieves the total number of unique participants in all tournaments. It counts the distinct participationID from the Participant table, ensuring that each participant is counted only once, even if they participated in multiple tournaments.
 - Knowing the total number of participants helps in understanding the popularity and engagement in tournaments. This information is essential for event planning, resource allocation, and potentially adjusting marketing strategies to encourage more participation.
 
->Find the length of members' memberships.
+>Find the length of members' memberships. (Q4)
 ```sql
 SELECT membershipID, membershipDuration
 FROM Membership
@@ -268,12 +268,22 @@ WHERE MS.membershipPrice > (SELECT AVG(membershipPrice) FROM Membership);
 
 > (Q9)
 ```sql
-query
+SELECT courtID, courtNumber
+FROM Court
+WHERE courtStatus = 'Available' AND courtLocation = 'East';
 ```
-`results`
+| courtID | courtNumber |
+|---------|-------------|
+| 10      | 3           |
+| 11      | 4           |
+| 24      | 12          |
+| 54      | 3           |
+| 57      | 4           |
+
 
 - plain english
-- managerial
+- Helps the pickleball club quickly find which courts in the East location are available for use. Knowing the available courts in a certain location allows the owners and staff to easily track courts and assign courts to members who prefer playing in that specific area. It also helps with scheduling and managing maintenance for available courts.
+
 
 > (Q10)
 ```sql
