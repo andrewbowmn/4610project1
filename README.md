@@ -21,7 +21,7 @@
 
 
 
-Table: Coach
+>Table: Coach
 
 | Column Name      | Description                                                   | Data Type | Size | Format | Key? |
 |------------------|---------------------------------------------------------------|-----------|------|--------|------|
@@ -31,7 +31,7 @@ Table: Coach
 | coachLevel       | Coach’s personal skill level                                  | Text      | 10   |        |      |
 | coachAvailability| Coach’s availability                                          | Text      | 20   |        |      |
 
-Table: Court
+>Table: Court
 
 | Column Name    | Description                                           | Data Type | Size | Format | Key? |
 |----------------|-------------------------------------------------------|-----------|------|--------|------|
@@ -41,7 +41,7 @@ Table: Court
 | courtLocation  | Location of court at fields                           | Text      | 10   |        |      |
 | courtStatus    | Availability of court                                  | Text      | 14   |        |      |
 
-### Table: Lesson
+>Table: Lesson
 
 | Column Name    | Description                                           | Data Type | Size | Format   | Key? |
 |----------------|-------------------------------------------------------|-----------|------|----------|------|
@@ -51,7 +51,7 @@ Table: Court
 | lessonDuration | Duration of the lesson                                 | Text      | 10   |        |      |
 | lessonFocus    | Main objective of lesson                               | Text      | 18   |        |      |
 
-Table: Member
+>Table: Member
 
 | Column Name        | Description                                                       | Data Type | Size | Format         | Key? |
 |--------------------|-------------------------------------------------------------------|-----------|------|----------------|------|
@@ -65,7 +65,7 @@ Table: Member
 | memberJoinDate     | Date that member joined the club                                 | Date      | 8    | 9999-99-99     |      |
 | membershipID       | Unique sequential number indicating the identification of the membership | Int       | 3    |                | FK (ref. Membership) |
 
-Table: Membership
+>Table: Membership
 
 | Column Name        | Description                                                       | Data Type | Size | Format   | Key? |
 |--------------------|-------------------------------------------------------------------|-----------|------|----------|------|
@@ -77,7 +77,7 @@ Table: Membership
 | paymentID          | Unique sequential number indicating the identification of the payment of the membership | Int       | 3    |          | FK (ref. Payment) |
 
 
-Table: Participant
+>Table: Participant
 
 | Column Name            | Description                                                    | Data Type | Size | Format | Key? |
 |------------------------|----------------------------------------------------------------|-----------|------|--------|------|
@@ -86,7 +86,7 @@ Table: Participant
 | participationPlacement  | Placement of participant in the tournament                    | Text      | 15   |        |      |
 | memberID               | Unique sequential number indicating the identification of the member | Int       | 3    |        | FK (ref. Member) |
 
-Table: Payment
+>Table: Payment
 
 | Column Name    | Description                                                   | Data Type | Size | Format     | Key? |
 |----------------|---------------------------------------------------------------|-----------|------|------------|------|
@@ -95,7 +95,7 @@ Table: Payment
 | paymentDate    | Date that payment was made                                    | Date      | 8    | 9999-99-99 |      |
 | paymentMethod  | Method in which payment was made                              | Text      | 15   |            |      |
 
-Table: Reservation
+>Table: Reservation
 
 | Column Name         | Description                                                    | Data Type | Size | Format         | Key? |
 |---------------------|----------------------------------------------------------------|-----------|------|----------------|------|
@@ -104,7 +104,7 @@ Table: Reservation
 | reservationDateTime | Exact date and time of reservation                            | Text      | 14   | 9999-99-99 99:99:99 |      |
 | reservationDuration | Duration of reservation                                        | Text      | 10   |                |      |
 
-Table: Results
+>Table: Results
 
 | Column Name         | Description                                                    | Data Type | Size | Format | Key? |
 |---------------------|----------------------------------------------------------------|-----------|------|--------|------|
@@ -115,7 +115,7 @@ Table: Results
 | participant2Score   | 2nd participant’s score                                       | Text      | 3    |        |      |
 | winner              | Winner of the game                                            | Text      | 3    |        |      |
 
-Table: Tournament
+>Table: Tournament
 
 | Column Name       | Description                                                   | Data Type | Size | Format   | Key? |
 |-------------------|---------------------------------------------------------------|-----------|------|----------|------|
@@ -128,7 +128,7 @@ Table: Tournament
 
 ## Queries
 #### Simple
-1. Provide a list of all members who have taken lessons at the club.
+>Provide a list of all members who have taken lessons at the club.
 ```sql
 SELECT DISTINCT M.memberID, M.memberFirstName, M.memberLastName
 FROM Member M
@@ -146,7 +146,7 @@ JOIN Lesson L ON M.memberID = L.memberID;
 
 - This query helps managers identify members who are actively participating in lessons, which is key to understanding engagement. By knowing who is taking lessons, managers can offer targeted promotions to increase member retention. It also aids in operational planning by showing the demand for lessons, helping allocate resources like coaches and facilities. 
 
-2. Find the total amount of payments that have been made for memberships
+>Find the total amount of payments that have been made for memberships
 ```sql
 SELECT SUM(p.paymentAmount) AS totalMembershipRevenue
 FROM Payment p
@@ -161,7 +161,7 @@ JOIN Membership m ON p.paymentID = m.paymentID;
 - This query allows the pickleball club management to have an idea of their revenue. Gross revenue is important to keep track of when running a business because it allows the club to allocate funds properly to tournament entry fees, coach salaries, court maintenance, and see what is making the most money.
 - Note: Payments have minimum balance of 100, but partial payments are allowed. This query can help identify if the payments recieved do not meet the expected amount of income per membership plans.
 
-3. Display the distribution of membership tiers (and their respective prices) at the pickelball club.
+>Display the distribution of membership tiers (and their respective prices) at the pickelball club.
 ```sql
 SELECT m.membershipName, COUNT(*) AS membershipCount, m.membershipPrice
 FROM Membership m
