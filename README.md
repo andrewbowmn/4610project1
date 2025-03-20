@@ -128,7 +128,7 @@
 
 ## Queries
 #### Simple
->Provide a list of all members who have taken lessons at the club.
+>Provide a list of all members who have taken lessons at the club. (Q1)
 ```sql
 SELECT DISTINCT M.memberID, M.memberFirstName, M.memberLastName
 FROM Member M
@@ -146,7 +146,7 @@ JOIN Lesson L ON M.memberID = L.memberID;
 
 - This query helps managers identify members who are actively participating in lessons, which is key to understanding engagement. By knowing who is taking lessons, managers can offer targeted promotions to increase member retention. It also aids in operational planning by showing the demand for lessons, helping allocate resources like coaches and facilities. 
 
->Find the total amount of payments that have been made for memberships
+>Find the total amount of payments that have been made for memberships (Q2)
 ```sql
 SELECT SUM(p.paymentAmount) AS totalMembershipRevenue
 FROM Payment p
@@ -161,7 +161,7 @@ JOIN Membership m ON p.paymentID = m.paymentID;
 - This query allows the pickleball club management to have an idea of their revenue. Gross revenue is important to keep track of when running a business because it allows the club to allocate funds properly to tournament entry fees, coach salaries, court maintenance, and see what is making the most money.
 - Note: Payments have minimum balance of 100, but partial payments are allowed. This query can help identify if the payments recieved do not meet the expected amount of income per membership plans.
 
->Display the distribution of membership tiers (and their respective prices) at the pickelball club.
+>Display the distribution of membership tiers (and their respective prices) at the pickelball club. (Q3)
 ```sql
 SELECT m.membershipName, COUNT(*) AS membershipCount, m.membershipPrice
 FROM Membership m
@@ -178,13 +178,73 @@ GROUP BY m.membershipName, m.membershipPrice;
 - This query counts the number of members in each membership type and displays the membershipName, the total number of members in each type (membershipCount), and the price for each membership type (membershipPrice). It joins the Membership table with the Member table using the membershipID field to link each member to their membership type. The query groups the results by membershipName and membershipPrice to get the count of members for each specific membership type.
 - This query helps managers understand the distribution of members across different membership types and their associated prices. It provides insights into the popularity of each membership tier, allowing managers to adjust pricing, marketing, and resource allocation accordingly. Additionally, it helps forecast potential revenue from each membership category.
 
+>Provide the count of total tournament participants. (Q4)
+```sql
+SELECT COUNT(DISTINCT p.participationID) AS totalParticipants
+FROM Participant p;
+```
+| totalParticipants |
+|-------------------|
+| 200               |
 
-
+- This query retrieves the total number of unique participants in all tournaments. It counts the distinct participationID from the Participant table, ensuring that each participant is counted only once, even if they participated in multiple tournaments.
+- Knowing the total number of participants helps in understanding the popularity and engagement in tournaments. This information is essential for event planning, resource allocation, and potentially adjusting marketing strategies to encourage more participation.
 
 
 #### Complex
+>Provide a list of coaches who have coached more than 5 lessons. (Q5)
+```sql
+SELECT C.coachID, C.coachFirstName, C.coachLastName, COUNT(L.coachID) AS totalLessons
+FROM Coach C
+JOIN Lesson L ON C.coachID = L.coachID
+GROUP BY C.coachID, C.coachFirstName, C.coachLastName
+HAVING COUNT(L.coachID) > 5;
+```
+| coachID | coachFirstName | coachLastName | totalLessons |
+|---------|----------------|---------------|--------------|
+| 1       | Diego          | Putt          | 6            |
+| 2       | Kermit         | Del Castello  | 8            |
+| 3       | Gothart        | Espinel       | 7            |
+| 5       | Nicola         | Thyer         | 9            |
+| 6       | Claudell       | Baud          | 11           |
 
+- Add plain english description
+- This query allows the pickleball club to see which coaches are most active in teaching lessons. It helps management understand which coaches are putting in the most work and generating the most value for the club. This information is useful for decisions about raises, bonuses, scheduling, or seeing if a coach needs to be assigned more lessons.
 
+>Find club members who have not made a court reservation (Q6)
+```sql
+SELECT M.memberID, M.memberFirstName, M.memberLastName
+FROM Member M
+LEFT JOIN Reservation R ON M.memberID = R.memberID
+WHERE R.memberID IS NULL;
+```
+| memberID | memberFirstName | memberLastName |
+|----------|-----------------|----------------|
+| 1        | Marty           | Crooke         |
+| 2        | Friedrick       | Kimmince       |
+| 3        | Jaimie          | Bess           |
+| 4        | Terese          | Aireton        |
+| 8        | Wilbur          | Scryne         |
+- Add plain english description
+- This query allows the pickleball club to see which members are not using the courts at all. It helps management figure out which members might be losing interest or are not taking advantage of their membership benefits. The club can use this information to reach out, re-engage these members, or offer incentives to get them back on the courts. Keeping members active is important for retention and making sure everyone gets value from their membership.
+
+>Provide a list of members who have payed more than the average membership price. (Q7)
+```sql
+SELECT M.memberID, M.memberFirstName, M.memberLastName, MS.membershipPrice
+FROM Member M
+JOIN Membership MS ON M.membershipID = MS.membershipID
+WHERE MS.membershipPrice > (SELECT AVG(membershipPrice) FROM Membership);
+```
+| memberID | memberFirstName | memberLastName | membershipPrice |
+|----------|-----------------|----------------|-----------------|
+| 38       | Griswold        | Bartholomieu   | 300             |
+| 21       | Giustina        | Richardon      | 300             |
+| 92       | Danie           | Freschini      | 400             |
+| 46       | Layla           | Stote          | 400             |
+| 45       | Bev             | Royle          | 400             |
+
+- Add plain english description
+- This query helps the pickleball club identify high-value members who are contributing in the top 50%. These members are likely more engaged and might be interested in premium services, loyalty perks, or exclusive events. The club should market more to these high paying customers.
 
 #### Notes & Assumptions
 - For clarity and conciseness, queries were ran and results displayed with `LIMIT 5;`
