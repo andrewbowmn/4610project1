@@ -245,7 +245,7 @@ WHERE R.memberID IS NULL;
 | 3        | Jaimie          | Bess           |
 | 4        | Terese          | Aireton        |
 | 8        | Wilbur          | Scryne         |
-- Add plain english description
+- This query lists all members of the club who have never made a court reservation. We use a LEFT JOIN between the Member and Reservation tables based on memberID. By filtering for results where R.memberID IS NULL, the query returns only those members who do not have a matching reservation record. The result includes the member's ID, first name, and last name.
 - This query allows the pickleball club to see which members are not using the courts at all. It helps management figure out which members might be losing interest or are not taking advantage of their membership benefits. The club can use this information to reach out, re-engage these members, or offer incentives to get them back on the courts. Keeping members active is important for retention and making sure everyone gets value from their membership.
 
 >Provide a list of members who have paid more than the average membership price. (Q8)
@@ -263,7 +263,7 @@ WHERE MS.membershipPrice > (SELECT AVG(membershipPrice) FROM Membership);
 | 46       | Layla           | Stote          | 400             |
 | 45       | Bev             | Royle          | 400             |
 
-- Add plain english description
+- This query retrieves a list of members who are paying more than the average membership price at the club. We join the Member table with the Membership table based on membershipID. The query uses a subquery to calculate the average membership price and filters out any members whose membership price is less than or equal to that average. The result shows each member’s ID, first name, last name, and the price they’re paying for their membership.
 - This query helps the pickleball club identify high-value members who are contributing in the top 50%. These members are likely more engaged and might be interested in premium services, loyalty perks, or exclusive events. The club should market more to these high paying customers.
 
 > Provide a list of the available courts on the east side (Q9)
