@@ -247,6 +247,34 @@ WHERE MS.membershipPrice > (SELECT AVG(membershipPrice) FROM Membership);
 - Add plain english description
 - This query helps the pickleball club identify high-value members who are contributing in the top 50%. These members are likely more engaged and might be interested in premium services, loyalty perks, or exclusive events. The club should market more to these high paying customers.
 
+> (Q8)
+```sql
+query
+```
+`results`
+
+- plain english
+- managerial
+
+> (Q9)
+```sql
+query
+```
+`results`
+
+- plain english
+- managerial
+
+> (Q10)
+```sql
+query
+```
+`results`
+
+- plain english
+- managerial
+
+
 #### Notes & Assumptions
 - For clarity and conciseness, queries were ran and results displayed with `LIMIT 5;`
 - The pickle ball club is proud to be open 24/7 for its members
