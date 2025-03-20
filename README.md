@@ -4,11 +4,12 @@
 
 ## Authors
 **MIST 4610 Section #47114 Group 3**
+- [Andrew Bowman](https://www.github.com/andrewbowmn)
 - [Kennedy Hankinson](https://www.github.com/kennedyhankinson)
 - [Johnny Vo](https://www.github.com/jvjohnny99)
-- [Andrew Bowman](https://www.github.com/andrewbowmn)
--  Charlie Nelson
 - [Sneha Neelagaru](https://www.github.com/sneelagaru03)
+-  Charlie Nelson
+
 ## Data Model
 
 ![Data Model](https://raw.githubusercontent.com/andrewbowmn/4610project1/main/datamodel.png)
