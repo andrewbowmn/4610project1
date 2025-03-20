@@ -8,7 +8,7 @@
 - [Kennedy Hankinson](https://www.github.com/kennedyhankinson)
 - [Johnny Vo](https://www.github.com/jvjohnny99)
 - [Sneha Neelagaru](https://www.github.com/sneelagaru03)
--  Charlie Nelson
+- [Charlie Nelson](https://www.github.com/ugarcn63826)
 
 ## Data Model
 
@@ -127,8 +127,17 @@
 | tournamentPrize   | Cash prize for winning tournament                             | Num       | 4    |          |      |
 
 ## Query Matrix
-
-coming soon!
+| Feature               | Query 1 | Query 2 | Query 3 | Query 4 | Query 5 | Query 6 | Query 7 | Query 8 | Query 9 | Query 10 |
+|-----------------------|---------|---------|---------|---------|---------|---------|---------|---------|---------|----------|
+| Multiple table join   | x       | x       |         |         | x       | x       | x       | x       |         | x        |
+| Subquery              |         |         |         |         |         |         |         | x       |         |          |
+| GROUP BY              |         |         |         |         | x       | x       |         |         |         | x        |
+| GROUP BY with HAVING  |         |         |         |         |         | x       |         |         |         |          |
+| Multi condition WHERE |         |         |         |         |         |         |         |         | x       |          |
+| Built-in functions    |         | x       | x       |         | x       | x       |         | x       |         | x        |
+| REGEXP                |         |         |         |         |         |         |         |         |         |          |
+| NOT EXISTS            |         |         |         |         |         |         |         |         |         |          |
+| LEFT JOIN             |         |         |         |         |         |         | x       |         |         |          |
 
 
 ## Queries
