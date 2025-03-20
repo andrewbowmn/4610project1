@@ -128,16 +128,7 @@
 
 ## Query Matrix
 
-| Feature                        | Query 1 | Query 2 | Query 3 | Query 4 | Query 5 | Query 6 | Query 7 | Query 8 | Query 9 | Query 10 | Query 11 |
-|---------------------------------|---------|---------|---------|---------|---------|---------|---------|---------|---------|----------|----------|
-| Multiple table join            | x       | x       | x       | x       | x       | x       | x       | x       | x       | x        | x        |
-| Subquery                        |         |         | x       |         | x       |         |         |         |         | x        |          |
-| GROUP BY                        |         | x       |         |         |         |         | x       |         | x       | x        |          |
-| GROUP BY with HAVING            |         |         |         |         | x       |         |         |         |         |          |          |
-| Multi condition WHERE           |         |         |         |         | x       |         |         |         | x       |          |          |
-| Built in functions              | x       | x       | x       | x       | x       | x       | x       | x       | x       | x        | x        |
-| REGEXP                          |         |         |         |         |         |         |         |         |         |          |          |
-| NOT EXISTS                      |         |         |         |         |         |        
+coming soon!
 
 
 ## Queries
@@ -316,29 +307,6 @@ GROUP BY C.courtID, C.courtNumber;
 
 - This query finds the number of reservations per court. It joins the Court and Reservation tables using courtID to connect each reservation to the correct court. The COUNT function totals the total number of reservations per court, and the GROUP BY groups the data by each court’s ID and number so that the reservation count is calculated for each individual court.
 - Helps the pickleball club see how often each court is being used. Tracking the number of reservations for each court allows management to understand which courts are the most popular and which ones might not be used as much. This information is useful for scheduling maintenance, making improvements, or possibly deciding if new courts need to be added.
-
-
-> Find members who have participated in a tournament (Q11)
-```sql
-SELECT m.memberID, m.memberFirstName, m.memberLastName
-FROM Member m
-JOIN Participant p ON m.memberID = p.memberID
-WHERE NOT EXISTS (
-    SELECT 1 FROM Lesson L WHERE L.memberID = m.memberID
-);
-```
-| memberID | memberFirstName | memberLastName |
-|----------|-----------------|----------------|
-| 7        | Bobby           | Cubuzzi        |
-| 15       | Ortensia        | Milsom         |
-| 18       | Dav             | Pilmer         |
-| 19       | Tiphany         | Gillion        |
-| 20       | Tiphany         | Gillion        |
-
-
-- plain english
-- Helps the club to identify which members to target in advertising for deals on lessons. The club may also want to offer free lessons to first-time participants, and this helps them to narrow down their search. If they know these members actively participate in tournaments, they will want to help them fine tune their skills so they can perform better. 
-
 
 
 #### Notes & Assumptions
