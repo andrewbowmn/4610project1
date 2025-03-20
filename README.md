@@ -126,6 +126,19 @@
 | tournamentFee     | Cost to participate in tournament                             | Num       | 3    |          |      |
 | tournamentPrize   | Cash prize for winning tournament                             | Num       | 4    |          |      |
 
+## Query Matrix
+
+| Feature                        | Query 1 | Query 2 | Query 3 | Query 4 | Query 5 | Query 6 | Query 7 | Query 8 | Query 9 | Query 10 | Query 11 |
+|---------------------------------|---------|---------|---------|---------|---------|---------|---------|---------|---------|----------|----------|
+| Multiple table join            | x       | x       | x       | x       | x       | x       | x       | x       | x       | x        | x        |
+| Subquery                        |         |         | x       |         | x       |         |         |         |         | x        |          |
+| GROUP BY                        |         | x       |         |         |         |         | x       |         | x       | x        |          |
+| GROUP BY with HAVING            |         |         |         |         | x       |         |         |         |         |          |          |
+| Multi condition WHERE           |         |         |         |         | x       |         |         |         | x       |          |          |
+| Built in functions              | x       | x       | x       | x       | x       | x       | x       | x       | x       | x        | x        |
+| REGEXP                          |         |         |         |         |         |         |         |         |         |          |          |
+| NOT EXISTS                      |         |         |         |         |         |        
+
 
 ## Queries
 #### Simple
