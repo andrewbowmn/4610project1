@@ -1,9 +1,9 @@
-# 4610 Group 3: Pickle Ball Club
+# Pickle Ball Club Relational Database
 
 - The task is to model and build a relational database for a pickleball club. This club offers lessons, has various levels of memberships, allows court reservations, and participates in tournaments. Our goal is to precisely model these relationships, create sample data, and populate the entities and their attributes accordingly. We aim to execute functional queries on this data to gain valuable business insights into the club and its activities. 
 
 ## Authors
-
+**MIST 4610 Section #47114 Group 3**
 - [Kennedy Hankinson](https://www.github.com/kennedyhankinson)
 - [Johnny Vo](https://www.github.com/jvjohnny99)
 - [Andrew Bowman](https://www.github.com/andrewbowmn)
