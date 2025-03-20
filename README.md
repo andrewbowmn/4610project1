@@ -127,18 +127,17 @@
 | tournamentPrize   | Cash prize for winning tournament                             | Num       | 4    |          |      |
 
 ## Query Matrix
-| Feature               | Query 1 | Query 2 | Query 3 | Query 4 | Query 5 | Query 6 | Query 7 | Query 8 | Query 9 | Query 10 |
-|-----------------------|---------|---------|---------|---------|---------|---------|---------|---------|---------|----------|
-| Multiple table join   | x       | x       |         |         | x       | x       | x       | x       |         | x        |
-| Subquery              |         |         |         |         |         |         |         | x       |         |          |
-| GROUP BY              |         |         |         |         | x       | x       |         |         |         | x        |
-| GROUP BY with HAVING  |         |         |         |         |         | x       |         |         |         |          |
-| Multi condition WHERE |         |         |         |         |         |         |         |         | x       |          |
-| Built-in functions    |         | x       | x       |         | x       | x       |         | x       |         | x        |
-| REGEXP                |         |         |         |         |         |         |         |         |         |          |
-| NOT EXISTS            |         |         |         |         |         |         |         |         |         |          |
-| LEFT JOIN             |         |         |         |         |         |         | x       |         |         |          |
-
+| Feature               | Query 1 | Query 2 | Query 3 | Query 4 | Query 5 | Query 6 | Query 7 | Query 8 | Query 9 | Query 10 | Query 11 |
+|-----------------------|---------|---------|---------|---------|---------|---------|---------|---------|---------|----------|----------|
+| Multiple table join   | x       | x       |         |         | x       | x       | x       | x       |         | x        | x        |
+| Subquery              |         |         |         |         |         |         |         | x       |         |          | x        |
+| GROUP BY              |         |         |         |         | x       | x       |         |         |         | x        |          |
+| GROUP BY with HAVING  |         |         |         |         |         | x       |         |         |         |          |          |
+| Multi condition WHERE |         |         |         |         |         |         |         |         | x       |          |          |
+| Built-in functions    |         | x       | x       |         | x       | x       |         | x       |         | x        |          |
+| REGEXP                |         |         |         |         |         |         |         |         |         |          |          |
+| NOT EXISTS            |         |         |         |         |         |         |         |         |         |          | x        |
+| LEFT JOIN             |         |         |         |         |         |         | x       |         |         |          |          |
 
 ## Queries
 #### Simple
@@ -317,11 +316,32 @@ GROUP BY C.courtID, C.courtNumber;
 - This query finds the number of reservations per court. It joins the Court and Reservation tables using courtID to connect each reservation to the correct court. The COUNT function totals the total number of reservations per court, and the GROUP BY groups the data by each court’s ID and number so that the reservation count is calculated for each individual court.
 - Helps the pickleball club see how often each court is being used. Tracking the number of reservations for each court allows management to understand which courts are the most popular and which ones might not be used as much. This information is useful for scheduling maintenance, making improvements, or possibly deciding if new courts need to be added.
 
+> Identify members who have participated in a tournament but never taken a lesson. 
+ (Q11)
+```sql
+SELECT m.memberID, m.memberFirstName, m.memberLastName
+FROM Member m
+JOIN Participant p ON m.memberID = p.memberID
+WHERE NOT EXISTS (
+    SELECT 1 FROM Lesson L WHERE L.memberID = m.memberID
+);
+```
+| memberID | memberFirstName | memberLastName |
+|----------|-----------------|----------------|
+| 6        | Shanta          | Daro           |
+| 7        | Bobby           | Cubuzzi        |
+| 15       | Ortensia        | Milsom         |
+| 18       | Dav             | Pilmer         |
+| 19       | Tiphany         | Gillion        |
+
+- This query retrieves the memberID, memberFirstName, and memberLastName of members who have participated in a tournament but have never taken a lesson. It joins the Member table with the Participant table to identify members who have participated in a tournament, and the NOT EXISTS clause ensures that only members who do not have a corresponding record in the Lesson table are included in the result.
+- Helps the club to identify which members to target in advertising for deals on lessons. The club may also want to offer free lessons to first-time participants, and this helps them to narrow down their search. If they know these members actively participate in tournaments, they will want to help them fine tune their skills so they can perform better. 
+
 
 #### Notes & Assumptions
 - For clarity and conciseness, queries were ran and results displayed with `LIMIT 5;`
 - The pickle ball club is proud to be open 24/7 for its members
 - Tournaments occur once per season, for a total of 4 a year.
 ## Database Information
-Access our database! ``al_Group_47114_G3`` on terry codrus server.
+Access our database! ``al_Group_47114_G3`` on Terry codrus server.
 
