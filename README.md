@@ -162,7 +162,7 @@ JOIN Membership m ON p.paymentID = m.paymentID;
 - This query allows the pickleball club management to have an idea of their revenue. Gross revenue is important to keep track of when running a business because it allows the club to allocate funds properly to tournament entry fees, coach salaries, court maintenance, and see what is making the most money.
 - Note: Payments have minimum balance of 100, but partial payments are allowed. This query can help identify if the payments recieved do not meet the expected amount of income per membership plans.
 
->Provide the count of total tournament participants. (Q5)
+>Provide the count of total tournament participants. (Q3)
 ```sql
 SELECT COUNT(DISTINCT p.participationID) AS totalParticipants
 FROM Participant p;
@@ -266,7 +266,7 @@ WHERE MS.membershipPrice > (SELECT AVG(membershipPrice) FROM Membership);
 - Add plain english description
 - This query helps the pickleball club identify high-value members who are contributing in the top 50%. These members are likely more engaged and might be interested in premium services, loyalty perks, or exclusive events. The club should market more to these high paying customers.
 
-> (Q9)
+> Provide a list of the available courts on the east side (Q9)
 ```sql
 SELECT courtID, courtNumber
 FROM Court
@@ -285,14 +285,25 @@ WHERE courtStatus = 'Available' AND courtLocation = 'East';
 - Helps the pickleball club quickly find which courts in the East location are available for use. Knowing the available courts in a certain location allows the owners and staff to easily track courts and assign courts to members who prefer playing in that specific area. It also helps with scheduling and managing maintenance for available courts.
 
 
-> (Q10)
+> Display the number of reservations per court. (Q10)
 ```sql
-query
+SELECT C.courtID, C.courtNumber, COUNT(R.courtID) AS totalReservations
+FROM Court C
+JOIN Reservation R ON C.courtID = R.courtID
+GROUP BY C.courtID, C.courtNumber;
 ```
-`results`
+| courtID | courtNumber | totalReservations |
+|---------|-------------|-------------------|
+| 13      | 1           | 16                |
+| 2       | 2           | 4                 |
+| 1       | 5           | 1                 |
+| 10      | 6           | 3                 |
+| 12      | 7           | 1                 |
+
 
 - plain english
-- managerial
+- Helps the pickleball club see how often each court is being used. Tracking the number of reservations for each court allows management to understand which courts are the most popular and which ones might not be used as much. This information is useful for scheduling maintenance, making improvements, or possibly deciding if new courts need to be added.
+
 
 > (Q11)
 ```sql
